@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using dapper.Domain.StoreContext.Enums;
 
 namespace dapper.Domain.StoreContext.Entities
@@ -10,8 +11,11 @@ namespace dapper.Domain.StoreContext.Entities
         public string Number { get; private set; }
         public DateTime CreateDate { get; private set; }
         public EOrderStatus Status { get; private set; }
-        public IReadOnlyCollection<OrderItem> Items { get; private set; }
-        public IReadOnlyCollection<Delivery> Deliveries { get; private set; }
+        public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
+        public IReadOnlyCollection<Delivery> Deliveries => _deliveries.ToArray();
+
+        private readonly IList<OrderItem> _items;
+        private readonly IList<Delivery> _deliveries;
 
         public Order(Customer customer)
         {
@@ -19,8 +23,18 @@ namespace dapper.Domain.StoreContext.Entities
             Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
             CreateDate = DateTime.Now;
             Status = EOrderStatus.Created;
-            Items = new List<OrderItem>();
-            Deliveries = new List<Delivery>();
+            _items = new List<OrderItem>();
+            _deliveries = new List<Delivery>();
+        }
+
+        public void AddItem(OrderItem item)
+        {
+            _items.Add(item);
+        }
+
+        public void AddDelivery(Delivery delivery)
+        {
+            _deliveries.Add(delivery);
         }
 
         // To Place An Order
@@ -29,9 +43,5 @@ namespace dapper.Domain.StoreContext.Entities
 
         }
 
-        public void AddItem(OrderItem item)
-        {
-
-        }
     }
 }

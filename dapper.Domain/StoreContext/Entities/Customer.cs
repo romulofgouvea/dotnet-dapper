@@ -1,35 +1,43 @@
+using System.Collections.Generic;
 using System;
+using dapper.Domain.ValueObjects;
+using System.Linq;
 
 namespace dapper.Domain.StoreContext.Entities
 {
     public class Customer
     {
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public string Document { get; private set; }
+        public Name Name { get; private set; }
+        public Document Document { get; private set; }
         public string Email { get; private set; }
         public string Phone { get; private set; }
-        public string Address { get; private set; }
+        public IReadOnlyCollection<Address> Addresses => _addresses.ToArray();
+
+        private readonly IList<Address> _addresses;
 
         public Customer(
-            string firstName,
-            string lastName,
+            Name name,
             string email,
-            string document,
-            string phone,
-            string address)
+            Document document,
+            string phone)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
             Email = email;
             Document = document;
             Phone = phone;
-            Address = address;
+
+            _addresses = new List<Address>();
+        }
+
+        public void AddAddress(Address address)
+        {
+            //validar e adicionar o endereço
+            _addresses.Add(address);
         }
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName}";
+            return Name.ToString();
         }
     }
 }
