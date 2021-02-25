@@ -1,11 +1,12 @@
 using dapper.Domain.StoreContext.Enums;
+using dapper.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace dapper.Domain.StoreContext.Entities
 {
-    public class Order
+    public class Order : Entity
     {
         public Customer Customer { get; private set; }
         public string Number { get; private set; }
@@ -26,9 +27,14 @@ namespace dapper.Domain.StoreContext.Entities
             _deliveries = new List<Delivery>();
         }
 
-        public void AddItem(OrderItem item)
+        public void AddItem(Product product, decimal quantity)
         {
-            _items.Add(item);
+            if (quantity > product.QuantityOnHand)
+            {
+                AddNotification("OrderItem", $"Produto {product.Title} não tem {quantity} em estoque.");
+            }
+
+            _items.Add(new OrderItem(product, quantity));
         }
 
         public void AddDelivery(Delivery delivery)
@@ -41,6 +47,11 @@ namespace dapper.Domain.StoreContext.Entities
         {
             //Gerar numero do pedido
             Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
+
+            if (_items.Count == 0)
+            {
+                AddNotification("Order", "Este pedido não possui itens");
+            }
         }
 
         public void Pay()

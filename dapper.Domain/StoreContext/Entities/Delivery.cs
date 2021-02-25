@@ -1,9 +1,10 @@
 using dapper.Domain.StoreContext.Enums;
+using dapper.Shared.Entities;
 using System;
 
 namespace dapper.Domain.StoreContext.Entities
 {
-    public class Delivery
+    public class Delivery : Entity
     {
         public DateTime CreateDate { get; private set; }
         public DateTime EstimatedDeliveryDate { get; private set; }

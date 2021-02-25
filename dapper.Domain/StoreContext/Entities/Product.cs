@@ -1,6 +1,8 @@
+using dapper.Shared.Entities;
+
 namespace dapper.Domain.StoreContext.Entities
 {
-    public class Product
+    public class Product : Entity
     {
         public string Title { get; private set; }
         public string Description { get; private set; }

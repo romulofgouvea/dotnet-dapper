@@ -1,10 +1,11 @@
 using dapper.Domain.ValueObjects;
+using dapper.Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace dapper.Domain.StoreContext.Entities
 {
-    public class Customer
+    public class Customer : Entity
     {
         public Name Name { get; private set; }
         public Document Document { get; private set; }

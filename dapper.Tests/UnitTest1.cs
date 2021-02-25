@@ -18,6 +18,12 @@ namespace dapper.Tests
 
             var order = new Order(c);
 
+            //Criar os produtos
+            var mouse = new Product("Mouse", "rato", "img.png", 10, 10);
+
+            //Adicionar nos pedidos
+            order.AddItem(mouse, 5);
+
             //Pagar o pedido
             order.Pay();
 

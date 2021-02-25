@@ -1,6 +1,8 @@
+using dapper.Shared.Entities;
+
 namespace dapper.Domain.StoreContext.Entities
 {
-    public class OrderItem
+    public class OrderItem : Entity
     {
         public Product Product { get; private set; }
         public decimal Quantity { get; private set; }
