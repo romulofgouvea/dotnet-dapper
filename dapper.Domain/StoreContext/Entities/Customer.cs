@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System;
 using dapper.Domain.ValueObjects;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace dapper.Domain.StoreContext.Entities
@@ -9,7 +8,7 @@ namespace dapper.Domain.StoreContext.Entities
     {
         public Name Name { get; private set; }
         public Document Document { get; private set; }
-        public string Email { get; private set; }
+        public Email Email { get; private set; }
         public string Phone { get; private set; }
         public IReadOnlyCollection<Address> Addresses => _addresses.ToArray();
 
@@ -17,7 +16,7 @@ namespace dapper.Domain.StoreContext.Entities
 
         public Customer(
             Name name,
-            string email,
+            Email email,
             Document document,
             string phone)
         {

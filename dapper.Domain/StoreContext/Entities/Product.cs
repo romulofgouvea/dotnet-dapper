@@ -1,5 +1,3 @@
-using System;
-
 namespace dapper.Domain.StoreContext.Entities
 {
     public class Product

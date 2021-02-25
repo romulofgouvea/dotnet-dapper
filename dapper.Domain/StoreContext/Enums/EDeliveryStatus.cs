@@ -1,5 +1,3 @@
-using System;
-
 namespace dapper.Domain.StoreContext.Enums
 {
     public enum EDeliveryStatus

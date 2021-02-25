@@ -1,5 +1,5 @@
-using System;
 using dapper.Domain.StoreContext.Enums;
+using System;
 
 namespace dapper.Domain.StoreContext.Entities
 {
@@ -15,6 +15,18 @@ namespace dapper.Domain.StoreContext.Entities
             Status = EDeliveryStatus.Waiting;
 
             EstimatedDeliveryDate = estimated;
+        }
+
+        public void Ship()
+        {
+            // Se a Data estimada de entrega for no passado, não entregar
+            Status = EDeliveryStatus.Shipped;
+        }
+
+        public void Cancel()
+        {
+            // Se o status já estiver entregue, não pode cancelar
+            Status = EDeliveryStatus.Canceled;
         }
     }
 }

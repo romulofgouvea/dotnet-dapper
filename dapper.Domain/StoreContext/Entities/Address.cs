@@ -1,6 +1,4 @@
-using System;
 using dapper.Domain.StoreContext.Enums;
-using dapper.Domain.ValueObjects;
 
 namespace dapper.Domain.StoreContext.Entities
 {
