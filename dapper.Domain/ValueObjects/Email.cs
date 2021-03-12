@@ -13,7 +13,7 @@ namespace dapper.Domain.ValueObjects
 
             var validation = new ValidationContract()
                 .Requires()
-                .IsEmail(Address, "Email","O E-mail é inválido.");
+                .IsEmail(Address, "Email", "O E-mail é inválido.");
 
             AddNotifications(validation);
         }

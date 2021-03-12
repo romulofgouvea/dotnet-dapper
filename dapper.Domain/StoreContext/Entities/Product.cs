@@ -25,6 +25,11 @@ namespace dapper.Domain.StoreContext.Entities
             QuantityOnHand = quantity;
         }
 
+        public void DecreaseQuantity(decimal quantity)
+        {
+            QuantityOnHand -= quantity;
+        }
+
         public override string ToString()
         {
             return $"{Title}";
