@@ -1,5 +1,4 @@
 using FluentValidator;
-using FluentValidator.Validation;
 
 namespace dapper.Domain.ValueObjects
 {

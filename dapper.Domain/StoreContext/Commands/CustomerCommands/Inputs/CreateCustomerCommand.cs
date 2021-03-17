@@ -29,18 +29,5 @@ namespace dapper.Domain.StoreContext.Commands.CustomerCommands.Inputs
             return base.Valid;
         }
 
-        public void CreateCustomer()
-        {
-            //Verificar se cpf ja existe
-            //Verificar se email ja existe
-
-            //Cria os VOs
-            //Criar entidade
-
-            //Validar as entidadese VO
-            //Inserir o cliente no banco
-
-            //Envia email boas vindas
-        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace dapper.Shared.Commands
 {
-    public interface ICommand
+    public interface ICommandResult
     {
-        bool Valid();
     }
 }
